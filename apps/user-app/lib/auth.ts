@@ -5,7 +5,8 @@ import { prisma } from "@rain/db";
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql", 
-    })
+    }),
+    emailAndPassword: {    
+        enabled: true
+    } 
 });
-
-const temp = prisma.user;

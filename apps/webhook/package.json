@@ -10,10 +10,11 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-   "dependencies": {
-    "@rain/db": "*"
+  "dependencies": {
+    "@rain/db": "*",
+    "dotenv": "^18.0.8"
   },
   "devDependencies": {
-    "@rain/typescript-config" : "*"
+    "@rain/typescript-config": "*"
   }
 }
