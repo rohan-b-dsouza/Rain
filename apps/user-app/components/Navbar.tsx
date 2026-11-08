@@ -1,15 +1,14 @@
 "use client";
-import Button from "./Button";
-
+import { Menu, X } from "lucide-react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "./DropdownMenu";
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./Sheet";
 
 export default function Navbar() {
   return (
@@ -37,66 +36,130 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="flex gap-7 md:gap-8 items-center">
-        <a className="text-muted font-medium text-xs md:text-sm" href="#features">
-          Features
-        </a>
-        <a className="text-muted font-medium text-xs md:text-sm" href="#howitworks">
-          Guide
-        </a>
-        <a className="text-muted font-medium text-xs md:text-sm" href="#security">
-          Security
-        </a>
+      <div className="flex items-center gap-4 md:gap-8">
+        <nav
+          aria-label="Main navigation"
+          className="hidden items-center gap-7 md:flex"
+        >
+          <a
+            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+            href="#features"
+          >
+            Features
+          </a>
+          <a
+            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+            href="#howitworks"
+          >
+            Guide
+          </a>
+          <a
+            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+            href="#security"
+          >
+            Security
+          </a>
+        </nav>
         <div className="md:flex gap-2 hidden items-center">
-          <Button
-            content="Sign in"
-            className={
-              "text-foreground font-semibold bg-surface border-border shadow-xs border py-3 px-5 rounded-control text-sm cursor-pointer"
-            }
-          ></Button>
-          <Button
-            content="Get started"
-            className={
-              "text-surface font-semibold bg-primary border-border shadow-xs border py-3 px-5 rounded-control text-sm cursor-pointer"
-            }
-          ></Button>
+          <a
+            href="/signin"
+            className="text-foreground font-semibold bg-surface border-border border py-3 px-5 rounded-control text-sm cursor-pointer"
+          >
+            Sign in
+          </a>
+          <a
+            href="/signup"
+            className="text-surface font-semibold bg-primary border-border shadow-xs border py-3 px-5 rounded-control text-sm cursor-pointer"
+          >
+            Get started
+          </a>
         </div>
-        <div className="md:hidden z-10">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger
+              aria-label="Open navigation"
+              className="flex size-10 items-center justify-center rounded-xl border border-border bg-surface text-foreground transition-colors hover:bg-back"
             >
-              <path
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M4.5 6.5h15M4.5 12h15m-15 5.5h15"
-              />
-            </svg>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuGroup>
-              <DropdownMenuItem className="text-foreground font-medium">
-                Sign in
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-foreground font-medium">
-                Get started
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+              <Menu size={20} aria-hidden="true" />
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              showCloseButton={false}
+              className="w-[min(88vw,360px)] border-l border-border bg-surface p-6 text-foreground"
+            >
+              <div className="flex items-start justify-between">
+                <SheetHeader className="p-0">
+                  <SheetTitle className="text-xl font-semibold text-foreground">
+                    Explore Rain
+                  </SheetTitle>
+                  <SheetDescription className="mt-1 text-sm text-muted">
+                    Everything for your everyday money.
+                  </SheetDescription>
+                </SheetHeader>
+                <SheetClose
+                  aria-label="Close navigation"
+                  className="flex size-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-background hover:text-foreground"
+                >
+                  <X size={19} aria-hidden="true" />
+                </SheetClose>
+              </div>
+
+              <nav
+                aria-label="Mobile navigation"
+                className="mt-8 flex flex-col"
+              >
+                <SheetClose
+                  nativeButton={false}
+                  render={
+                    <a
+                      href="#features"
+                      className="border-b border-border py-4 text-base font-medium text-foreground"
+                    />
+                  }
+                >
+                  Features
+                </SheetClose>
+                <SheetClose
+                  nativeButton={false}
+                  render={
+                    <a
+                      href="#howitworks"
+                      className="border-b border-border py-4 text-base font-medium text-foreground"
+                    />
+                  }
+                >
+                  Guide
+                </SheetClose>
+                <SheetClose
+                  nativeButton={false}
+                  render={
+                    <a
+                      href="#security"
+                      className="border-b border-border py-4 text-base font-medium text-foreground"
+                    />
+                  }
+                >
+                  Security
+                </SheetClose>
+              </nav>
+              <div className="mt-8 flex flex-col gap-3 pr-2">
+                <a
+                  href="/signin"
+                  className="flex h-12 items-center justify-center rounded-xl border border-border bg-surface text-sm font-semibold text-foreground"
+                >
+                  Sign in
+                </a>
+                <a
+                  href="/signup"
+                  className="flex h-12 items-center justify-center rounded-xl bg-primary text-sm font-semibold text-surface"
+                >
+                  Get started
+                </a>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 }
